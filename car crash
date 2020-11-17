@@ -1,0 +1,66 @@
+var ford,wall;
+var speed,weight;
+
+
+function setup() 
+{
+  createCanvas(1600,400);
+
+  speed = (45,150);
+  //in kg
+  weight = (1200,3000);
+
+  wall = createSprite(1500,200,60,height/2);
+  wall.shapeColor = (80,80,80) ;
+  wall.debug = "true";
+
+  ford = createSprite(40,200,50,50);
+  ford.shapeColor = "purple";
+  ford.debug = "true";
+
+}
+
+function draw() {
+  background(255,255,255);  
+  
+  if(keyDown("space"))
+  {
+    ford.velocityX = speed;
+  }
+
+  wall.depth = ford.depth + 2;
+  ford.depth = 3;
+
+  if(wall.x - ford.x < (ford.width + wall.width)/2)
+  {
+    ford.velocityX = 0;
+    var deformation = 0.5*weight*speed*speed/22500;
+
+    if(deformation > 180)
+    {
+      ford.shapeColor = "red"
+    }
+
+    if(deformation < 180 && deformation > 100)
+    {
+      ford.shapeColor = "yellow";  
+    }
+    
+    if(deformation < 100)
+    {
+      ford.shapeColor = "green";
+    }
+  }
+  
+    if(keyDown("r"))
+    {
+      reset();
+    }
+
+  drawSprites();
+}
+
+function reset(){
+  ford.x = 40;
+  ford.shapeColor = "purple";
+}
