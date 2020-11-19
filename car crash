@@ -6,9 +6,9 @@ function setup()
 {
   createCanvas(1600,400);
 
-  speed = (45,150);
+  speed = random(45,150);
   //in kg
-  weight = (1200,3000);
+  weight = random(1200,3000);
 
   wall = createSprite(1500,200,60,height/2);
   wall.shapeColor = (80,80,80) ;
